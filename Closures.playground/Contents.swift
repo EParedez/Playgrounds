@@ -17,13 +17,14 @@ realizarOperacion(int1: 2, int2: 4){
 
 
 var misCadenas = ["a", "b", "c", "d"]
+typealias regresaString = (String) -> String
 
 
-func transformarArray(cadenas:[String], transform:(String) -> String) -> [String] {
+func transformarArray(cadenas:[String], transform: regresaString) -> [String] {
     return recorreArray(cadenas: cadenas, transformString: transform )
 }
 
-func recorreArray(cadenas:[String], transformString:(String) -> String) -> [String]{
+func recorreArray(cadenas:[String], transformString:regresaString) -> [String]{
     var array = [String]()
     for s in cadenas{
         array.append(transformString(s))
@@ -31,6 +32,8 @@ func recorreArray(cadenas:[String], transformString:(String) -> String) -> [Stri
     return array
 }
 
-//var a = transformarArray(cadenas: misCadenas)
 //transformarArray(cadenas: misCadenas, transform: {(s) -> String in return s + s } )
-transformarArray(cadenas: misCadenas, transform: {(s) -> String in return s.uppercased() } )
+//transformarArray(cadenas: misCadenas, transform: {(s) -> String in return s.uppercased() } )
+//transformarArray(cadenas: misCadenas, transform: { $0.uppercased() } )
+transformarArray(cadenas: misCadenas, transform: { $0.uppercased() + $0 } )
+
